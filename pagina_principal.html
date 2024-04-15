@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10;
+            padding: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            margin: 15px;
+            padding: 20px 30px;
+            /* Mantém o mesmo preenchimento interno */
+            font-size: 24px;
+            /* Mantém o mesmo tamanho de fonte */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: rgb(81, 80, 84);
+            /* Mantém a mesma cor de fundo */
+            color: #050505;
+            /* Mantém a mesma cor de texto */
+            display: block;
+            width: 100%;
+            /* Ocupa toda a largura disponível */
+        }
+
+        button:hover {
+            background-color: rgb(46, 48, 69);
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <video autoplay loop muted>
+        <source src="login.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="container">
+        <h2 style="color: #000;">Seja Bem-vindo!</h2>
+        <button onclick="openPage('PUXA')">puxa</button>
+        <button onclick="openPage('ABASTECIMENTO')">abastecimento</button>
+        <button onclick="openPage('REEMBOLSO')">reembolso</button>
+    </div>
+
+    <script>
+        function openPage(page) {
+            window.location.href = page.toLowerCase() + '.html';
+        }
+    </script>
+
+</body>
+
+</html>

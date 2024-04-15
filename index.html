@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10;
+            padding: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        .container {
+            display: none;
+            /* Inicialmente oculto */
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            background-color: rgba(77, 83, 109, 0.7);
+        }
+
+        .button-container {
+            text-align: center;
+            /* Centraliza o conteúdo horizontalmente */
+            margin-bottom: 20px;
+            /* Espaçamento inferior */
+        }
+
+        button {
+            background-color: rgb(81, 80, 84);
+            color: #050505;
+            cursor: pointer;
+            padding: 20px 30px;
+            /* Adiciona preenchimento interno */
+            border: none;
+            /* Remove a borda */
+            border-radius: 10px;
+            /* Adiciona bordas arredondadas */
+            font-size: 24px;
+            /* Altere o tamanho da fonte conforme desejado */
+
+        }
+
+        button:hover {
+            background-color: rgb(46, 48, 69);
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 6px solid #8a86b1;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 24px;
+            /* Altere o tamanho da fonte conforme desejado */
+
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="button-container"> <!-- Envolve o botão em uma div para centralizá-lo -->
+        <button onclick="showLogin()">ENTRAR</button> <!-- Botão para mostrar o formulário de login -->
+    </div>
+
+    <div class="container" id="loginContainer">
+        <h2>MOTORISTAS</h2>
+        <h2>ANDRADE TRANSPORTES</h2>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <input type="text" id="username" placeholder="Digite seu Usuário"><br>
+            <input type="password" id="password" placeholder="Digite sua Senha"><br>
+            <button type="submit">LOGIN</button>
+            <p class="error" id="errorMessage" style="display: none;">Usuário ou senha incorretos.</p>
+        </form>
+    </div>
+
+    <video autoplay loop muted>
+        <source src="login.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        function showLogin() {
+            document.getElementById('loginContainer').style.display = 'block'; // Mostra o formulário de login ao clicar no botão "Entrar"
+            document.querySelector('.button-container').style.display = 'none'; // Esconde a div do botão "Entrar"
+        }
+
+        function validateLogin() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Carrega os usuários e senhas permitidos do arquivo usuarios_senhas.html
+            fetch('usuarios_senhas.html')
+                .then(response => response.text())
+                .then(data => {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(data, 'text/html');
+                    var table = doc.querySelector('table');
+                    var rows = table.querySelectorAll('tbody tr');
+                    var isValid = false;
+                    rows.forEach(row => {
+                        var user = row.cells[0].textContent.trim();
+                        var pass = row.cells[1].textContent.trim();
+                        if (username === user && password === pass) {
+                            isValid = true;
+                        }
+                    });
+                    if (isValid) {
+                        window.location.href = 'pagina_principal.html'; // Redireciona para a página principal
+                    } else {
+                        document.getElementById('errorMessage').style.display = 'block'; // Exibe mensagem de erro
+                    }
+                })
+                .catch(error => console.error('Erro ao carregar usuários e senhas:', error));
+
+            return false; // Evita que o formulário seja submetido normalmente
+        }
+    </script>
+
+</body>
+
+</html>
