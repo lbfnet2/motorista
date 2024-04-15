@@ -10,13 +10,13 @@
     <script>
         // Inicialize o Firebase com as configurações do seu projeto
         const firebaseConfig = {
-            apiKey: "SUA_API_KEY",
-            authDomain: "SEU_DOMÍNIO.firebaseapp.com",
-            databaseURL: "https://SEU_DOMÍNIO.firebaseio.com",
-            projectId: "SEU_PROJETO_ID",
-            storageBucket: "SEU_BUCKET.appspot.com",
-            messagingSenderId: "SEU_SENDER_ID",
-            appId: "SEU_APP_ID"
+            apiKey: "AIzaSyCOFFHgsYl3gqOpEUOw2DtIyDtgRQhQTDE",
+            authDomain: "motora-c2c43.firebaseapp.com",
+            databaseURL: "https://motora-c2c43-default-rtdb.firebaseio.com",
+            projectId: "motora-c2c43",
+            storageBucket: "motora-c2c43.appspot.com",
+            messagingSenderId: "533447273603",
+            appId: "1:533447273603:web:02214de57d8bfb49413fb6",
         };
 
         // Inicialize o Firebase
